@@ -12,6 +12,7 @@ extents = Vector2( 23.4716, 36.259 )
 
 [node name="Dinossauro" type="Area2D" parent="." index="0"]
 
+editor/display_folded = true
 position = Vector2( 90, 90 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
