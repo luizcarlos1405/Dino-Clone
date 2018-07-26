@@ -6,11 +6,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12, 28 )
+extents = Vector2( 28, 28 )
 
-[node name="Cacto" type="Area2D"]
+[node name="Cacto" type="Area2D" index="0"]
 
-position = Vector2( 1399, 671 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -23,13 +22,15 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+position = Vector2( 0, -35 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 446, 2, 34, 70 )
+region_rect = Rect2( 480, 2, 68, 70 )
 _sections_unfolded = [ "Region" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( 0, -35 )
 shape = SubResource( 1 )
 
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Dinossauro.gd" type="Script" id=1]
-[ext_resource path="res://sprites/sprites.png" type="Texture" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://ParallaxBackground.gd" type="Script" id=2]
+[ext_resource path="res://sprites/sprites.png" type="Texture" id=3]
+[ext_resource path="res://Dinossauro.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,10 +12,42 @@ extents = Vector2( 23.4716, 36.259 )
 
 [node name="Main" type="Node" index="0"]
 
-[node name="Dinossauro" type="Area2D" parent="." index="0"]
+script = ExtResource( 1 )
 
-editor/display_folded = true
-position = Vector2( 90, 90 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 2400, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 2400, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+script = ExtResource( 2 )
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 2400, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Chão" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+position = Vector2( 850, 710 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 2, 103, 2400, 25 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Dinossauro" type="Area2D" parent="." index="1"]
+
+position = Vector2( 46, 654 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -21,12 +55,12 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprites" type="Sprite" parent="Dinossauro" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 1338, 2, 88, 94 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
