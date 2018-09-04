@@ -1,5 +1,7 @@
 extends Area2D
 
+signal recomecou
+
 var chao = Vector2(110, 659)
 var gravidade = 4000
 var velocidade = Vector2()
@@ -21,9 +23,13 @@ var cactos = [preload("res://CactoP1.tscn"),
 func _ready():
 	set_position(chao)
 	randomize()
+	$AnimationPlayer.play("parado")
 	pass
 
 func _physics_process(delta):
+	if not get_parent().comecou:
+		return
+	
 	tempo += delta
 	
 	if tempo >= intervalo:
@@ -36,8 +42,6 @@ func _physics_process(delta):
 		
 		# Decide novo intervalo
 		intervalo = rand_range(intervalo_min, intervalo_max)
-		print(intervalo)
-		
 		
 		
 	if Input.is_action_pressed("pular"):
@@ -56,4 +60,21 @@ func _physics_process(delta):
 		velocidade = Vector2()
 
 func colidiu(area):
-	queue_free()
+	$AnimationPlayer.play("morto")
+	get_parent().comecou = false
+	get_parent().acabou = true
+	if get_parent().pontos > get_parent().record:
+		get_parent().record = get_parent().pontos
+	pass
+
+func _input(event):
+	if event is InputEventKey or event is InputEventMouseButton:
+		if get_parent().acabou and not event.is_echo():
+			emit_signal("recomecou")
+#			get_tree().reload_current_scene()
+			get_parent().acabou = false
+			get_parent().get_node("Record").text = "Record: " + str(get_parent().record)
+			pass
+		
+		get_parent().comecou = true
+		$AnimationPlayer.play("andando")

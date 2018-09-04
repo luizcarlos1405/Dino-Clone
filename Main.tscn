@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://ParallaxBackground.gd" type="Script" id=2]
 [ext_resource path="res://sprites/sprites.png" type="Texture" id=3]
-[ext_resource path="res://Dinossauro.gd" type="Script" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 23.4716, 36.259 )
+[ext_resource path="res://Dinossauro.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node" index="0"]
 
@@ -35,7 +30,7 @@ _sections_unfolded = [ "Scroll" ]
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 2400, 0 )
-_sections_unfolded = [ "Motion" ]
+_sections_unfolded = [ "Motion", "Transform" ]
 
 [node name="Chão" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
@@ -45,28 +40,54 @@ region_enabled = true
 region_rect = Rect2( 2, 103, 2400, 25 )
 _sections_unfolded = [ "Region", "Transform" ]
 
-[node name="Dinossauro" type="Area2D" parent="." index="1"]
+[node name="Dinossauro" parent="." index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 46, 654 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 60, 660 )
 
-[node name="sprites" type="Sprite" parent="Dinossauro" index="0"]
+[node name="Pontos" type="Label" parent="." index="2"]
 
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 1338, 2, 88, 94 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 17.0
+margin_right = 56.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Pontos: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts", "custom_styles" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dinossauro" index="1"]
+[node name="Record" type="Label" parent="." index="3"]
 
-shape = SubResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 560.0
+margin_top = 17.0
+margin_right = 620.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Record: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts", "custom_styles" ]
 
 
